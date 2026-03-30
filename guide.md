@@ -169,7 +169,43 @@ Once the installation inside ProtonUp-Qt is completely finished, you must apply 
 5. Check the box that says Force the use of a specific Steam Play compatibility tool.
 6. Click the dropdown menu and select the GE-Proton version you just installed.
 
-### Gamemode
+### 2. Global Environment Variables
+Establishing global environment variables via systemd's `/etc/environment.d/` directory is the most robust and modern approach for a Kubuntu system. Unlike legacy methods that rely on shell-specific files (like `.bashrc`) or the outdated `/etc/environment`, this method guarantees that variables are uniformly injected into your KDE Plasma Wayland session at the user-manager level, long before any graphical applications, game launchers, or background services are executed.
+
+```bash
+sudo tee /etc/environment.d/gaming-config.conf <<EOF
+# ----------------------------------------
+# WAYLAND ENFORCEMENT (DESKTOP)
+# ----------------------------------------
+# Force Electron-based applications (like VS Code, Discord, Obsidian) to use Wayland
+ELECTRON_OZONE_PLATFORM_HINT=wayland
+
+# Force Mozilla applications (like Firefox) to use Wayland
+MOZ_ENABLE_WAYLAND=1
+
+# ----------------------------------------
+# KERNEL & WINE OPTIMIZATIONS
+# ----------------------------------------
+# Enable NTSYNC globally for standard Wine
+WINEFSYNC_NTSYNC=1
+
+# Enable NTSYNC globally for Valve's Proton and GE-Proton
+PROTON_WINEFSYNC_NTSYNC=1
+
+# ----------------------------------------
+# DISPLAY & UPSCALING
+# ----------------------------------------
+# Enable vendor upscaling tech upgrade (Choose according to your hardware)
+PROTON_FSR4_UPGRADE=1
+# PROTON_DLSS_UPGRADE=1
+# PROTON_XESS_UPGRADE=1
+
+# Enable HDR compatibility
+PROTON_ENABLE_HDR=1
+EOF
+```
+
+### 3. Gamemode
 To enable gamemode for your Steam games, you need to add a launch option to each game:
 
 **For Individual Games:**
@@ -182,7 +218,7 @@ To enable gamemode for your Steam games, you need to add a launch option to each
    ```
 5. Close the properties window and launch the game
 
-### Mangohud
+### 4. Mangohud
 
 #### Configure using Goverlay
 
