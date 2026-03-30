@@ -124,15 +124,63 @@ sudo apt update
 sudo apt install code
 ```
 
-### 6. Zoom
+### 6. Zoom 
+```bash
+# 1. Download the latest Zoom Debian package directly from their official server
+wget https://zoom.us/client/latest/zoom_amd64.deb
+
+# 2. Install the package using APT to handle dependencies natively
+sudo apt install -y ./zoom_amd64.deb
+
+# 3. Clean up the downloaded installation file to keep your directory tidy
+rm zoom_amd64.deb
+```
 
 ## Phase III: Gaming Setup
 
-### GEProton
+### 1. GEProton
 
 #### Install ProtonUp-Qt (Flatpak)
+```bash
+# Install ProtonUp-Qt from Flathub
+flatpak install -y flathub net.davidotek.pupgui2
+```
+
+(Note: If the application does not immediately appear in your KDE Plasma application menu, you can launch it manually from the terminal the first time by running `flatpak run net.davidotek.pupgui2`.)
+
+#### Install GE-Proton using the GUI
+ProtonUp-Qt provides a straightforward visual interface to handle the downloading and extraction process we previously did via the terminal.
+
+1. Open ProtonUp-Qt from your application launcher.
+2. In the main window, ensure the Install for: dropdown menu at the top is set to Steam.
+3. Click the Add Version button located at the bottom of the window.
+4. In the new popup window:
+    - Compatibility Tool: Select GE-Proton.
+    - Version: The latest stable release will be selected by default (e.g., GE-Proton-10).
+5. Click Install.
+
+#### Activation on Steam
+Once the installation inside ProtonUp-Qt is completely finished, you must apply the new tool inside Steam.
+
+1. Fully restart the Steam client. Steam only scans for new compatibility tools during its initial startup.
+2. Open your Steam Library.
+3. Right-click on the specific game you want to run with GE-Proton and select Properties.
+4. Navigate to the Compatibility tab.
+5. Check the box that says Force the use of a specific Steam Play compatibility tool.
+6. Click the dropdown menu and select the GE-Proton version you just installed.
 
 ### Gamemode
+To enable gamemode for your Steam games, you need to add a launch option to each game:
+
+**For Individual Games:**
+1. Open your Steam Library
+2. Right-click on the game you want to optimize
+3. Select **Properties**
+4. In the **Launch Options** field, add:
+   ```
+   gamemoderun %command%
+   ```
+5. Close the properties window and launch the game
 
 ### Mangohud
 
