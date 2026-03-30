@@ -23,8 +23,18 @@ sudo apt update
 ```
 
 ### 3. Install Flatpak
-
 ```bash
+# Update your package index
+sudo apt update
+
+# Install the core Flatpak utility and the Discover backend integration
+sudo apt install -y flatpak plasma-discover-backend-flatpak
+
+# Add Flathub to the remote list for all users on the system
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Reboot your system to apply the new environment variables
+sudo reboot
 ```
 
 ## Phase I: Drivers & Core Dependencies
@@ -80,6 +90,13 @@ sudo apt install steam-installer gamemode -y
 ```
 
 ### 3. Mangohud & Goverlay
+```bash
+# Update your package index
+sudo apt update
+
+# Install the overlay, the GUI manager, and the testing tools
+sudo apt install -y mangohud goverlay vulkan-tools mesa-utils
+```
 
 ### 4. OBS Studio (Official PPA)
 ```bash
