@@ -220,7 +220,29 @@ To enable gamemode for your Steam games, you need to add a launch option to each
 
 ### 4. Mangohud
 
-#### Configure using Goverlay
+#### Configure using GOverlay
+GOverlay provides a graphical interface to customize MangoHud without needing to manually edit configuration files.
+
+1. Open **GOverlay** from your application launcher.
+2. Navigate to the **MangoHud** tab.
+3. Use the visual interface to toggle the metrics you want to monitor during gameplay (e.g., FPS, Frame Timing, CPU/GPU Temperature, RAM usage).
+4. Click the **Save** button at the bottom right to generate your configuration profile.
+
+#### Testing
+Before launching a game, you can verify the overlay works using the testing tools we installed in Phase II.
+```bash
+# Test MangoHud using a basic Vulkan application
+mangohud vkcube
+```
+
+#### Activation
+To enable the overlay in your games, you must add it to the Steam Launch Options. If you are already using Gamemode (configured in Step 3), you can chain these commands together seamlessly.
+
+1. Right-click the game in your Steam Library and select Properties.
+2. In the Launch Options field, chain the commands separated by a space:
+    ```bash
+    mangohud gamemoderun %command%
+    ```
 
 ## Phase IV: KDE Plasma & System Tweaks
 
