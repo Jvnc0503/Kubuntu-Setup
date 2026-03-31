@@ -61,27 +61,26 @@ Because Ubuntu/Kubuntu replaces the default `firefox` APT package with a transit
 ```bash
 # 1. Create keyring directory and download the Mozilla signing key
 sudo install -d -m 0755 /etc/apt/keyrings
-wget -q [https://packages.mozilla.org/apt/repo-signing-key.gpg](https://packages.mozilla.org/apt/repo-signing-key.gpg) -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
 # 2. Add the Mozilla APT repository using the modern deb822 format
-sudo tee /etc/apt/sources.list.d/mozilla.sources <<EOF
+cat <<EOF | sudo tee /etc/apt/sources.list.d/mozilla.sources
 Types: deb
-URIs: [https://packages.mozilla.org/apt](https://packages.mozilla.org/apt)
+URIs: https://packages.mozilla.org/apt
 Suites: mozilla
 Components: main
 Signed-By: /etc/apt/keyrings/packages.mozilla.org.asc
-EOF
+EOF 
 
 # 3. Configure APT priority to strictly prefer the native Mozilla packages
-sudo tee /etc/apt/preferences.d/mozilla <<EOF
+cat <<EOF | sudo tee /etc/apt/preferences.d/mozilla
 Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000
-EOF
+EOF 
 
 # 4. Update the package index and install native Firefox
-sudo apt update
-sudo apt install firefox -y
+sudo apt update && sudo apt install firefox -y
 ```
 
 ### 2. Steam & Gamemode
