@@ -170,38 +170,25 @@ Once the installation inside ProtonUp-Qt is completely finished, you must apply 
 6. Click the dropdown menu and select the GE-Proton version you just installed.
 
 ### 2. Global Environment Variables
-Establishing global environment variables via systemd's `/etc/environment.d/` directory is the most robust and modern approach for a Kubuntu system. Unlike legacy methods that rely on shell-specific files (like `.bashrc`) or the outdated `/etc/environment`, this method guarantees that variables are uniformly injected into your KDE Plasma Wayland session at the user-manager level, long before any graphical applications, game launchers, or background services are executed.
+Use systemd's `/etc/environment.d/` directory to set variables system-wide. This applies them early, before apps start, so KDE Plasma, Steam, and Proton all inherit the same settings.
 
 ```bash
 sudo tee /etc/environment.d/gaming-config.conf <<EOF
-# ----------------------------------------
-# WAYLAND ENFORCEMENT (DESKTOP)
-# ----------------------------------------
-# Force Electron-based applications (like VS Code, Discord, Obsidian) to use Wayland
+# Enforce Wayland for Desktop Apps
 ELECTRON_OZONE_PLATFORM_HINT=wayland
-
-# Force Mozilla applications (like Firefox) to use Wayland
 MOZ_ENABLE_WAYLAND=1
 
-# ----------------------------------------
-# KERNEL & WINE OPTIMIZATIONS
-# ----------------------------------------
-# Enable NTSYNC globally for standard Wine
-WINEFSYNC_NTSYNC=1
+# Enable NTSYNC
+WINE_USE_NTSYNC=1
+PROTON_USE_NTSYNC=1
 
-# Enable NTSYNC globally for Valve's Proton and GE-Proton
-PROTON_WINEFSYNC_NTSYNC=1
+# Enable HDR support
+PROTON_ENABLE_HDR=1
 
-# ----------------------------------------
-# DISPLAY & UPSCALING
-# ----------------------------------------
-# Enable vendor upscaling tech upgrade (Choose according to your hardware)
+# Upscaling Upgrade (Choose according to your hardware)
 PROTON_FSR4_UPGRADE=1
 # PROTON_DLSS_UPGRADE=1
 # PROTON_XESS_UPGRADE=1
-
-# Enable HDR compatibility
-PROTON_ENABLE_HDR=1
 EOF
 ```
 
