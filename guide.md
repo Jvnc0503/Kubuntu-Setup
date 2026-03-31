@@ -44,7 +44,7 @@ Steam and some older games require 32-bit compatibility libraries.
 ```bash
 sudo dpkg --add-architecture i386
 sudo apt update && sudo apt upgrade -y
-sudo apt install linux-headers-$(uname -r) build-essential dkms vainfo mesa-utils -y
+sudo apt install linux-headers-$(uname -r) build-essential dkms mesa-utils mesa-vulkan-drivers mesa-vulkan-drivers:i386 -y
 ```
 
 ### 2. Enable NTSYNC Kernel Module
