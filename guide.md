@@ -173,9 +173,8 @@ Use systemd's `/etc/environment.d/` directory to set variables system-wide. This
 
 ```bash
 sudo tee /etc/environment.d/gaming-config.conf <<EOF
-# Enforce Wayland for Desktop Apps
+# Enforce Wayland for Electron Apss
 ELECTRON_OZONE_PLATFORM_HINT=wayland
-MOZ_ENABLE_WAYLAND=1
 
 # Enable NTSYNC
 WINE_USE_NTSYNC=1
