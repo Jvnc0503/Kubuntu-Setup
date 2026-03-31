@@ -234,9 +234,37 @@ To enable the overlay in your games, you must add it to the Steam Launch Options
 ## Phase IV: KDE Plasma & System Tweaks
 
 ### Display
+Configuring your display properly in Wayland is critical to eliminate screen tearing and minimize input lag.
+
+1. Open System Settings and navigate to Display & Monitor.
+2. **Refresh rate**: Select the absolute highest available option for your monitor (e.g., 144 Hz, 165 Hz).
+3. Adaptive sync (FreeSync or Gsync): Select Automatic.
+    - *Didactic Note*: In Wayland, "Automatic" enables Variable Refresh Rate (VRR) exclusively when an application is full-screen. This is the optimal setting, as setting it to "Always" forces VRR on standard desktop windows, which can cause erratic screen flickering.
+4. **Screen tearing**: Check Allow in fullscreen windows. This permits the Wayland compositor to drop vsync protocols in competitive games for the lowest possible latency.
+5. Click **Apply**.
 
 ### Mouse
+Mouse acceleration dynamically changes your cursor speed based on how fast you move the physical mouse. This ruins muscle memory in first-person shooters. You must enforce raw, 1:1 input.
+
+1. Open **System Settings** and go to **Mouse and Touchpad > Mouse**.
+2. Select the **Device** corresponding to your mouse model.
+3. Uncheck the **Enable pointer acceleration** box.
+4. Click **Apply**.
 
 ### Power Management
+Modern processors dynamically scale their clock speeds down to save battery. For gaming, you want to ensure the CPU governor is willing to boost to its maximum frequency immediately.
+
+1. Click the **Power Management** icon in your system tray (bottom right).
+2. Drag the Power Profile slider all the way to the right to select Performance.
+    - **Note**: If you are on a laptop, ensure the device is plugged into wall power, as the Performance profile will drain the battery extremely fast.
 
 ### Background Services
+
+#### Disable File Indexing (Baloo)
+KDE Plasma uses a background service called Baloo to constantly index your files for rapid searching. This service can unexpectedly spike CPU usage and disk I/O while you are playing a game.
+
+1. Open **System Settings**.
+2. Navigate to **File Search**.
+3. Uncheck **File Indexing** to completely disable background indexing.
+4. Click **Apply**.
+    - (Note: You will still be able to search for files manually; it will just take a few seconds longer, which is a worthy trade-off for stable gaming frame rates.)
