@@ -173,18 +173,21 @@ Use systemd's `/etc/environment.d/` directory to set variables system-wide. This
 
 ```bash
 sudo tee /etc/environment.d/gaming-config.conf <<EOF
-# Enforce Wayland for Electron Apss
+# Prefer Wayland for Electron apps
 ELECTRON_OZONE_PLATFORM_HINT=wayland
 
-# Enable NTSYNC
+# Enable NTSYNC for Wine and Proton
 WINE_USE_NTSYNC=1
 PROTON_USE_NTSYNC=1
 
-# Enable HDR support
+# Enable HDR support in Proton
 PROTON_ENABLE_HDR=1
 
-# Upscaling Upgrade (Choose according to your hardware)
-PROTON_FSR4_UPGRADE=1
+# Enable GE-Proton Wayland support if your games tolerate it
+PROTON_ENABLE_WAYLAND=1
+
+# Optional upscaling features, choose what matches your GPU
+# PROTON_FSR4_UPGRADE=1
 # PROTON_DLSS_UPGRADE=1
 # PROTON_XESS_UPGRADE=1
 EOF
