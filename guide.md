@@ -254,8 +254,8 @@ PROTON_USE_NTSYNC=1
 # Enable HDR support in Proton
 PROTON_ENABLE_HDR=1
 
-# Enable GE-Proton Wayland support if your games tolerate it
-PROTON_ENABLE_WAYLAND=1
+# Enable GE-Proton Wayland support (experimental)
+# PROTON_ENABLE_WAYLAND=1
 
 # Optional upscaling features, choose what matches your GPU
 # PROTON_FSR4_UPGRADE=1
