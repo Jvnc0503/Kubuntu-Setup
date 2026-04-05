@@ -145,15 +145,34 @@ sudo apt update
 sudo apt install -y build-essential gdb cmake
 ```
 
-### 2. Python Environment
-Kubuntu 25.10 comes with Python 3, but you will need pip (package manager) and venv for isolated environments.
+### 2. Python & Package Management
+Kubuntu 25.10 comes with Python 3, but these tools add flexible environment management.
+
+#### Standard Python Tools
+You will need pip (package manager) and venv for isolated environments. Best for lightweight web or script development.
 
 ```bash
 sudo apt install -y python3-pip python3-venv
 ```
 
-### 3. Node.js (fnm)
-fnm is a fast Node version manager that keeps your Node.js installs isolated and makes it easy to switch between versions without touching the system package manager.
+#### Miniconda (Conda Environment Manager)
+Ideal for data science, machine learning, or projects requiring specific non-Python dependencies.
+
+```bash
+# Download the latest Miniconda installer
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# Run the installer (Follow the prompts: press Enter and type 'yes')
+bash Miniconda3-latest-Linux-x86_64.sh
+
+# Cleanup installer and refresh shell
+rm Miniconda3-latest-Linux-x86_64.sh
+source ~/.bashrc
+```
+
+### 3. Node.js (via fnm)
+We use `fnm` (Fast Node Manager) because it’s faster than `nvm`. It keeps your Node.js installs isolated and makes it easy to switch between versions without touching the system package manager.
+
 ```bash
 # Install fnm (Fast Node Manager)
 curl -fsSL https://fnm.vercel.app/install | bash
@@ -167,28 +186,24 @@ fnm use lts-latest
 ```
 
 ### 4. Docker Engine
-To avoid using Snaps for Docker, we use the official Docker repository.
+Official Docker repository setup to avoid the Snap-based version.
 
 ```bash
-# Add Docker's official GPG key:
+# Add Docker's official GPG key
 sudo apt update
 sudo apt install -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# Add the repository
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Post-install: Allow running docker without sudo
+# Allow running docker without sudo (Requires Logout/Login)
 sudo usermod -aG docker $USER
-# Note: You must log out and back in for group changes to take effect.
 ```
 
 ## Phase IV: Gaming Setup
