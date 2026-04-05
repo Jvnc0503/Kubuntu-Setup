@@ -1,4 +1,4 @@
-# Kubuntu 25.10 gaming setup
+# Kubuntu 25.10 gaming and dev setup
 
 ## Phase 0: System Preparation
 
@@ -135,7 +135,63 @@ sudo apt install -y ./zoom_amd64.deb
 rm zoom_amd64.deb
 ```
 
-## Phase III: Gaming Setup
+## Phase III: Development Tools
+
+### 1. C/C++ Build Essentials
+This installs the GNU Compiler Collection (GCC), G++, and make, which are fundamental for compiling software from source.
+
+```bash
+sudo apt update
+sudo apt install -y build-essential gdb cmake
+```
+
+### 2. Python Environment
+Kubuntu 25.10 comes with Python 3, but you will need pip (package manager) and venv for isolated environments.
+
+```bash
+sudo apt install -y python3-pip python3-venv
+```
+
+### 3. Node.js (fnm)
+fnm is a fast Node version manager that keeps your Node.js installs isolated and makes it easy to switch between versions without touching the system package manager.
+```bash
+# Install fnm (Fast Node Manager)
+curl -fsSL https://fnm.vercel.app/install | bash
+
+# Activate fnm (or restart your terminal)
+source ~/.bashrc
+
+# Install the latest LTS version of Node
+fnm install --lts
+fnm use lts-latest
+```
+
+### 4. Docker Engine
+To avoid using Snaps for Docker, we use the official Docker repository.
+
+```bash
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Post-install: Allow running docker without sudo
+sudo usermod -aG docker $USER
+# Note: You must log out and back in for group changes to take effect.
+```
+
+## Phase IV: Gaming Setup
 
 ### 1. GEProton
 
@@ -232,7 +288,7 @@ To enable the overlay in your games, you must add it to the Steam Launch Options
     mangohud gamemoderun %command%
     ```
 
-## Phase IV: KDE Plasma & System Tweaks
+## Phase V: KDE Plasma & System Tweaks
 
 ### Display
 Configuring your display properly in Wayland is critical to eliminate screen tearing and minimize input lag.
