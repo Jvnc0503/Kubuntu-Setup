@@ -269,3 +269,45 @@ KDE Plasma uses a background service called Baloo to constantly index your files
 3. Uncheck **File Indexing** to completely disable background indexing.
 4. Click **Apply**.
     - (Note: You will still be able to search for files manually; it will just take a few seconds longer, which is a worthy trade-off for stable gaming frame rates.)
+
+#### Disable Unnecessary Services
+KDE Plasma includes several optional background services that are safe to disable if you do not use them. Turning off the ones you do not need can reduce idle CPU work, background notifications, and small bursts of disk activity while gaming.
+
+Search for `Background Service` in **System Settings > Background Services**, then disable the entries you do not use.
+
+| Service Name | What it does | Should it be disabled? |
+| :--- | :--- | :--- |
+| **Accent Color** | Applies extracted accent color from wallpaper on request. | **Yes**, unless you want your UI colors to change with your wallpaper. |
+| **Application menus daemon** | Transfers application's menu to the desktop. | **Yes**, unless you use a "Global Menu" widget on your panel. |
+| **Audio Shortcuts** | Provides shortcuts for audio device and volume control. | **No**, essential for keyboard volume keys. |
+| **Automatic Location for Night Light** | Provides location updates for Night Light. | **Yes**, unless you use the Night Light feature and travel across time zones often. |
+| **Bluetooth** | Handles Bluetooth events. | **No**, unless you strictly never use Bluetooth devices. |
+| **Device Notifications** | Play audible feedback when devices are inserted or removed. | **Yes**, if you find USB plug/unplug sounds annoying. |
+| **Donation Request** | Shows a yearly request to donate to KDE. | **Yes**. |
+| **Free Space Notifier** | Warns when running out of space on your home folder. | **No**, it uses negligible resources and is a good safety net. |
+| **GNOME/GTK Settings Synchronization Service** | Automatically applies settings to GNOME/GTK applications. | **No**, keeps non-KDE apps (like Firefox) matching your system theme. |
+| **inotify** | Monitors inotify resources for signs of exhaustion. | **No**, critical for software development tools and IDEs that watch for file changes. |
+| **Kameleon** | Synchronizes device LEDs with the Plasma accent color. | **Yes**, unless you want your keyboard RGB to match your wallpaper. |
+| **Keyboard Daemon** | Enables switching keyboard layout through shortcuts or system tray. | **No**, essential for stable custom key-repeat rates and layout switching. |
+| **KScreen 2** | Screen management. | **No**, critical for external monitors and 2-in-1 screen rotation. |
+| **Location-based System Time Zone** | Automatically change the system time zone based on the current location. | **Yes**, unless you travel frequently with the laptop. |
+| **Media Controller** | Controls media players using global keyboard shortcuts. | **No**, allows keyboard play/pause/skip keys to work. |
+| **Operating System Release Notifier** | Checks for new system releases and notifies when available. | **Yes**, if you prefer to check for OS upgrades manually. |
+| **Out of Memory Notifier** | Informs when applications get terminated to prevent out of memory conditions. | **No**, helpful diagnostic tool for heavy workloads. |
+| **Plasma Browser Integration Flatpak Integration** | Automatically enables support for Firefox Flatpak. | **Yes**, unless you use the Flatpak version of Firefox. |
+| **Plasma Browser Integration Installation Reminder** | Provides a link to the browser extension if the host is installed. | **Yes**, it is just a nag screen. |
+| **Plasma Network Management module** | Provides secrets to the NetworkManager daemon. | **No**, essential for remembering Wi-Fi and VPN passwords. |
+| **Plasma Vault module** | Provides encrypted vaults. | **Yes**, unless you actively use KDE's encrypted folder feature. |
+| **Print Manager** | Notify when a new printer is detected, or there are problems. | **Yes**, if you do not use a printer. |
+| **Proxy Verifier** | Verifies proxy setup is performing as expected. | **Yes**, unnecessary for standard home network setups. |
+| **Remote URL Change Notifier** | Provides change notification for network folders. | **Yes**, unless you actively work off FTP/SSH network drives. |
+| **Removable Device Automounter** | Automatically mounts devices as needed. | **Optional**, yes if you prefer to manually click USB drives to mount them. |
+| **Search Folder Updater** | Allows automatic updates of Search Folders. | **Yes**, unless you use saved search queries in the Dolphin file manager. |
+| **Session Shortcuts** | Provides shortcuts for common session actions. | **No**, handles standard shortcuts like locking the screen or logging out. |
+| **SMART** | Storage device health monitoring. | **No**, essential early warning system for drive failure. |
+| **SMB Watcher** | Monitors directories on the smb:/ protocol for changes. | **Yes**, unless you use Windows/Samba shared network folders. |
+| **Status Notifier Manager** | Manages services that provide status notifier user interfaces. | **No**, essential for system tray icons to appear and function. |
+| **Thunderbolt Device Monitor** | Thunderbolt Device Monitor. | **Yes**, if your hardware does not have a Thunderbolt port. |
+| **Time Zone** | Provides the system's time zone to applications. | **No**, essential for accurate application timestamps. |
+| **Touchpad** | Enables or disables touchpad. | **No**, required if you use a hardware shortcut/Fn key to toggle the touchpad. |
+| **Write Daemon** | Watch for messages from local users sent with write(1) or wall(1). | **Yes**, legacy service for multi-user terminal messaging. |
