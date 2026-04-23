@@ -149,10 +149,22 @@ sudo apt install -y build-essential gdb cmake
 Kubuntu 25.10 comes with Python 3, but these tools add flexible environment management.
 
 #### Standard Python Tools
-You will need pip (package manager) and venv for isolated environments. Best for lightweight web or script development.
+You will need `pip` (package manager) and `venv` for isolated environments. On Debian/Ubuntu-based systems, the `venv` module must be installed explicitly to enable `ensurepip`, which bootstraps the environment.
 
 ```bash
-sudo apt install -y python3-pip python3-venv
+# Update package index
+sudo apt update
+
+# Install pip and the specific venv module for the system's Python version
+# This prevents the "ensurepip is not available" error
+sudo apt install -y python3-pip python3.13-venv
+
+# --- Usage Example ---
+# 1. Create a virtual environment in the current directory
+# python3 -m venv .venv
+
+# 2. Activate the environment
+# source .venv/bin/activate
 ```
 
 #### Miniconda (Conda Environment Manager)
