@@ -8,7 +8,25 @@ Recommended to do periodically.
 sudo apt update && sudo apt upgrade
 ```
 
-### 2. Block Snaps
+### 2. Remove and Purge Snaps
+Before blocking the service via APT, you must remove all existing Snap packages and the daemon itself to reclaim disk space and prevent broken links.
+
+#### 1. List and remove installed packages:
+```bash
+snap list
+# Remove each package listed (e.g., firefox, gnome-46-2404, gtk-common-themes)
+sudo snap remove --purge <package-name>
+```
+#### 2. Uninstall the Snapd daemon and clean system directories:
+```bash
+sudo apt remove --purge snapd -y
+rm -rf ~/snap
+sudo rm -rf /var/cache/snapd/
+sudo rm -rf /var/snap
+sudo rm -rf /var/lib/snapd
+```
+
+#### 3. Block Snaps
 Create an APT preference file to prevent `snapd` from being reinstalled automatically, then update package list:
 ```bash
 # Block snapd via APT preferences
@@ -22,7 +40,7 @@ EOF
 sudo apt update
 ```
 
-### 3. Install Flatpak
+#### 4. Install Flatpak
 ```bash
 # Update your package index
 sudo apt update
