@@ -318,7 +318,7 @@ ls -l /dev/ntsync
 ```
 *You should see output indicating ntsync is loaded and /dev/ntsync exists with crw-rw-rw- permissions.*
 
-### Env var
+### Env vars
 
 ```bash
 cat << 'EOF' > ~/.config/environment.d/proton.conf
@@ -341,4 +341,20 @@ EOF
 
 ```bash
 PROTON_ENABLE_WAYLAND=0 %command%
+```
+
+## 13. Audio DSP (EQ)
+
+Install EasyEffects, a powerful GUI-based audio processor for real-time equalization, compression, and audio enhancement. This works seamlessly with PipeWire to provide professional-grade DSP capabilities:
+
+```bash
+sudo apt update && sudo apt install easyeffects calf-plugins lsp-plugins
+```
+
+### Verify Installation
+
+Check that PipeWire audio server is active and EasyEffects can detect audio devices:
+
+```bash
+pactl info && which easyeffects
 ```
